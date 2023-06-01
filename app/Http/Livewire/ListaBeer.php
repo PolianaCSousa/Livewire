@@ -21,6 +21,8 @@ class ListaBeer extends Component
     */ 
     public $item;
     public $lista = ['Frank', 'Icaro', 'Lucas', 'Danilo', 'Lamarques', 'Tom'];
+    public $key; 
+    public $acao = 'adicionar';
 
     public function render()
     {
@@ -38,11 +40,19 @@ class ListaBeer extends Component
         $this->lista = [];
     }
 
-    public function delete($key){
+    public function delete(int $key){
         unset($this->lista[$key]);
     }
 
-    public function edit($key){
-        
+    public function edit(int $key){
+        $this->item = $this->lista[$key];
+        $this->key = $key;
+        $this->acao = 'atualizar';
+    }
+
+    public function update(){
+        $this->lista[$this->key] = $this->item;
+        $this->acao = 'adicionar';
+        $this->item = '';
     }
 }
